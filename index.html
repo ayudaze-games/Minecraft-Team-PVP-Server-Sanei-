@@ -2,6 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- 🚀 Google Search Console 確認用タグ -->
+    <meta name="google-site-verification" content="sQUFBQ3vL35ut0C">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SANEI TEAM PVP SERVER 公式</title>
 </head>
@@ -18,7 +20,7 @@
         SANEI TEAM PVP
     </h1>
     <p id="site-subtitle" style="color: #94a3b8; font-size: 1.1rem; margin-top: 0; margin-bottom: 40px; text-align: center; font-weight: bold; letter-spacing: 1px;">
-        <span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - 究極のチームバトルサーバー
+        <span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - 究極 of チームバトルサーバー
     </p>
 
     <!-- ⚡ ステータスコンテナ -->
@@ -63,7 +65,6 @@
         let currentLang = 'ja';
         let serverData = null;
 
-        // 翻訳データ
         const translations = {
             ja: {
                 subtitle: '<span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - 究極 of チームバトルサーバー',
@@ -107,11 +108,8 @@
             }
         };
 
-        // 言語を切り替える関数
         function setLanguage(lang) {
             currentLang = lang;
-            
-            // ボタンの見た目切り替え
             const btnJa = document.getElementById('btn-ja');
             const btnEn = document.getElementById('btn-en');
             if (btnJa) {
@@ -122,37 +120,27 @@
                 btnEn.style.background = lang === 'en' ? '#3b82f6' : '#1e293b';
                 btnEn.style.color = lang === 'en' ? 'white' : '#94a3b8';
             }
-
-            // テキストの更新
             const subtitleEl = document.getElementById('site-subtitle');
             const ruleTitleEl = document.getElementById('rule-title');
             if (subtitleEl) subtitleEl.innerHTML = translations[lang].subtitle;
             if (ruleTitleEl) ruleTitleEl.innerHTML = translations[lang].rulesTitle;
-            
-            // ルール一覧の更新
             const ruleListEl = document.getElementById('rule-list');
             if (ruleListEl) {
                 ruleListEl.innerHTML = translations[lang].rules.map(rule => `<li style="margin-bottom: 10px;">${rule}</li>`).join('');
             }
-
-            // サーバー状況表示の更新
             updateServerDisplay();
         }
 
-        // サーバー画面の更新
         function updateServerDisplay() {
             const titleEl = document.getElementById('server-status-title');
             const infoEl = document.getElementById('server-info');
             if (!titleEl || !infoEl) return;
-            
             const t = translations[currentLang];
-
             if (!serverData) {
                 titleEl.innerHTML = t.checking;
                 infoEl.innerHTML = t.loading;
                 return;
             }
-
             if (serverData.online === true) {
                 titleEl.innerHTML = t.online;
                 titleEl.style.color = '#4ade80';
@@ -169,4 +157,6 @@
                 titleEl.style.color = '#f87171';
                 titleEl.style.textShadow = '0 0 10px rgba(248, 113, 113, 0.6)';
                 infoEl.innerHTML = t.closed;
-} else {titleEl.innerHTML = t.error;titleEl.style.color = '#fbbf24';titleEl.style.textShadow = '0 0 10px rgba(251, 191, 36, 0.6)';infoEl.innerHTML = t.fail;}}// サーバーデータの取得async function fetchServer() {try {const response = await fetch('mcsrvstat.us');serverData = await response.json();} catch (error) {serverData = { online: 'error' };}updateServerDisplay();}// 初期化処理document.addEventListener('DOMContentLoaded', () => {setLanguage('ja');fetchServer();});// 念のため即時実行（フォールバック）setTimeout(() => {if (!serverData) {setLanguage('ja');fetchServer();}}, 500);
+            } else {
+                titleEl.innerHTML = t.error;
+titleEl.style.color = '#fbbf24';titleEl.style.textShadow = '0 0 10px rgba(251, 191, 36, 0.6)';infoEl.innerHTML = t.fail;}}async function fetchServer() {try {const response = await fetch('mcsrvstat.us');serverData = await response.json();} catch (error) {serverData = { online: 'error' };}updateServerDisplay();}document.addEventListener('DOMContentLoaded', () => {setLanguage('ja');fetchServer();});setTimeout(() => {if (!serverData) {setLanguage('ja');fetchServer();}}, 500);
