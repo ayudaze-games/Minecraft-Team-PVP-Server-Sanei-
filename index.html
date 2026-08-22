@@ -5,38 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SANEI TEAM PVP SERVER 公式</title>
 </head>
-<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0f19; color: #e2e8f0; margin: 0; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh;">
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0f19; color: #e2e8f0; margin: 0; padding: 60px 20px 40px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; position: relative;">
+
+    <!-- 🌐 言語切り替えスイッチ -->
+    <div style="position: absolute; top: 20px; right: 20px; display: flex; gap: 10px;">
+        <button onclick="setLanguage('ja')" id="btn-ja" style="background: #3b82f6; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px rgba(59,130,246,0.5); transition: 0.2s;">🇯🇵 JP</button>
+        <button onclick="setLanguage('en')" id="btn-en" style="background: #1e293b; color: #94a3b8; border: none; padding: 8px 16px; border-radius: 20px; font-weight: bold; cursor: pointer; transition: 0.2s;">🇺🇸 EN</button>
+    </div>
 
     <!-- メインタイトル：サイバーネオン風 -->
     <h1 style="font-size: 2.5rem; text-align: center; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; color: #fff; text-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 40px #ef4444;">
         SANEI TEAM PVP
     </h1>
-    <p style="color: #94a3b8; font-size: 1.1rem; margin-top: 0; margin-bottom: 40px; text-align: center; font-weight: bold; letter-spacing: 1px;">
+    <p id="site-subtitle" style="color: #94a3b8; font-size: 1.1rem; margin-top: 0; margin-bottom: 40px; text-align: center; font-weight: bold; letter-spacing: 1px;">
         <span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - 究極のチームバトルサーバー
     </p>
 
-    <!-- ⚡ ステータスコンテナ（ネオンの枠線） -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #334155; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 30px; width: 100%; max-width: 420px; text-align: center; backdrop-filter: blur(10px); margin-bottom: 30px;">
+    <!-- ⚡ ステータスコンテナ -->
+    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #334155; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 30px; width: 100%; max-width: 420px; text-align: center; backdrop-filter: blur(10px); margin-bottom: 30px; box-sizing: border-box;">
         
-        <!-- 自動切り替えタイトル -->
         <h3 id="server-status-title" style="font-size: 1.4rem; margin-top: 0; margin-bottom: 20px; color: #64748b; letter-spacing: 1px; font-weight: 800;">
             🔍 サーバー状況確認中...
         </h3>
         
-        <!-- サーバーアイコン -->
         <div style="margin-bottom: 20px;">
             <img src="https://mcsrvstat.us" alt="サーバーアイコン" style="width: 80px; height: 80px; border-radius: 12px; border: 2px solid #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
         </div>
 
-        <!-- 接続アドレス -->
         <div style="background: #020617; border: 1px solid #1e293b; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
-            <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; font-weight: bold; display: block; margin-bottom: 5px;">SERVER ADDRESS</span>
+            <span id="label-address" style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; font-weight: bold; display: block; margin-bottom: 5px;">SERVER ADDRESS</span>
             <span style="color: #38bdf8; font-family: 'Courier New', Courier, monospace; font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px;">
                 sanei-teamvpserver.duckdns.org
             </span>
         </div>
         
-        <!-- 詳細情報表示エリア -->
         <div id="server-info" style="font-size: 1rem; border-top: 1px solid #1e293b; padding-top: 20px; color: #94a3b8;">
             データを読み込んでいます...
         </div>
@@ -44,58 +46,127 @@
 
     <!-- 📜 サーバーのルールセクション -->
     <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid #1e293b; border-radius: 12px; padding: 25px; width: 100%; max-width: 420px; box-sizing: border-box;">
-        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; color: #f59e0b; border-bottom: 2px solid #f59e0b; padding-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+        <h3 id="rule-title" style="margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; color: #f59e0b; border-bottom: 2px solid #f59e0b; padding-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
             📜 SERVER RULES
         </h3>
-        <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: #cbd5e1; font-size: 0.95rem;">
-            <li style="margin-bottom: 10px;"><strong style="color: #ef4444;">チート行為の禁止：</strong><br>このサーバーではすべての不正なチート・外部ツールの使用を禁止しています。</li>
-            <li style="margin-bottom: 10px;"><strong style="color: #ef4444;">ワールド複製の禁止：</strong><br>このサーバー（ワールドデータ）を無断で複製・配布することは禁止です。</li>
-            <li style="margin-bottom: 10px;"><strong style="color: #38bdf8;">動画配信・投稿時のお願い：</strong><br>動画や配信で使用する際は、概要欄などに <span style="background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #f43f5e;">[Minecraft Server bySanei(Ayudaze)]</span> と入力していただけるとありがたいです！</li>
-            <li style="margin-bottom: 0;"><strong style="color: #38bdf8;">ブロック破壊について：</strong><br>基本はアドベンチャーモードのため壊したり設置はできません。PvP会場内のみ破壊可能になっていますが、できるだけ壊さないようにプレイしてください。</li>
+        <ul id="rule-list" style="margin: 0; padding-left: 20px; line-height: 1.6; color: #cbd5e1; font-size: 0.95rem;">
+            <!-- JavaScriptで自動挿入されます -->
         </ul>
     </div>
 
-    <!-- フッター：飾り -->
     <p style="color: #475569; font-size: 0.8rem; margin-top: 40px; text-align: center;">
         &copy; 2026 SANEI TEAM PVP SERVER. All rights reserved.
     </p>
 
-    <!-- 🧠 サーバー状況をチェックするプログラム -->
+    <!-- 🧠 多言語対応＆サーバーチェックプログラム -->
     <script>
-        async function checkServer() {
-            const titleEl = document.getElementById('server-status-title');
-            const infoEl = document.getElementById('server-info');
-            
-            try {
-                const response = await fetch('https://mcsrvstat.us');
-                const data = await response.json();
-                
-                if (data.online === true) {
-                    titleEl.innerHTML = '⚡ ONLINE';
-                    titleEl.style.color = '#4ade80';
-                    titleEl.style.textShadow = '0 0 10px rgba(74, 222, 128, 0.6)';
-                    infoEl.innerHTML = `
-                        <div style="display: flex; justify-content: space-around; margin-bottom: 10px;">
-                            <div><strong style="color: #fff; font-size: 1.3rem;">${data.players.online}</strong><br><span style="font-size: 0.8rem;">ONLINE</span></div>
-                            <div><strong style="color: #fff; font-size: 1.3rem;">${data.players.max}</strong><br><span style="font-size: 0.8rem;">MAX PLAYERS</span></div>
-                        </div>
-                        <p style="margin: 15px 0 0 0; color: #64748b; font-size: 0.85rem;">VERSION: ${data.version}</p>
-                    `;
-                } else {
-                    titleEl.innerHTML = '🛑 OFFLINE';
-                    titleEl.style.color = '#f87171';
-                    titleEl.style.textShadow = '0 0 10px rgba(248, 113, 113, 0.6)';
-                    infoEl.innerHTML = '<p style="color: #f87171; margin: 5px 0; font-weight: bold;">戦場は現在閉鎖されています。</p>';
-                }
-            } catch (error) {
-                titleEl.innerHTML = '⚠️ ERROR';
-                titleEl.style.color = '#fbbf24';
-                infoEl.innerHTML = 'ステータスの取得に失敗しました。';
+        let currentLang = 'ja';
+        let serverData = null;
+
+        // 翻訳データ
+        const translations = {
+            ja: {
+                subtitle: '<span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - 究極 of チームバトルサーバー',
+                checking: '🔍 サーバー状況確認中...',
+                online: '⚡ ONLINE',
+                offline: '🛑 OFFLINE',
+                error: '⚠️ ERROR',
+                loading: 'データを読み込んでいます...',
+                closed: '<p style="color: #f87171; margin: 5px 0; font-weight: bold;">戦場は現在閉鎖されています。</p>',
+                fail: 'ステータスの取得に失敗しました。',
+                players: 'ONLINE',
+                maxPlayers: 'MAX PLAYERS',
+                version: 'VERSION',
+                rulesTitle: '📜 サーバー設定 ＆ ルール',
+                rules: [
+                    '<strong>チート行為の禁止：</strong><br>このサーバーではすべての不正なチート・外部ツールの使用を禁止しています。',
+                    '<strong>ワールド複製の禁止：</strong><br>このサーバー（ワールドデータ）を無断で複製・配布することは禁止です。',
+                    '<strong>動画配信・投稿時のお願い：</strong><br>動画や配信で使用する際は、概要欄などに <span style="background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #f43f5e;">[Minecraft Server bySanei(Ayudaze)]</span> と入力していただけるとありがたいです！',
+                    '<strong>ブロック破壊について：</strong><br>基本はアドベンチャーモードのため壊したり設置はできません。PvP会場内のみ破壊可能になっていますが、できるだけ壊さないようにプレイしてください。'
+                ]
+            },
+            en: {
+                subtitle: '<span style="color: #ef4444;">RED</span> vs <span style="color: #3b82f6;">BLUE</span> - Ultimate Team Battle Server',
+                checking: '🔍 Checking status...',
+                online: '⚡ ONLINE',
+                offline: '🛑 OFFLINE',
+                error: '⚠️ ERROR',
+                loading: 'Loading server data...',
+                closed: '<p style="color: #f87171; margin: 5px 0; font-weight: bold;">The battlefield is currently closed.</p>',
+                fail: 'Failed to retrieve server status.',
+                players: 'ONLINE',
+                maxPlayers: 'MAX PLAYERS',
+                version: 'VERSION',
+                rulesTitle: '📜 SERVER RULES',
+                rules: [
+                    '<strong>No Cheating:</strong><br>Hacks, cheats, or third-party unfair modifications are strictly prohibited.',
+                    '<strong>No World Copying:</strong><br>Do not duplicate, clone, or redistribute this world file without permission.',
+                    '<strong>For Video Creators:</strong><br>When using this server in videos/streams, please credit <span style="background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #f43f5e;">[Minecraft Server bySanei(Ayudaze)]</span> in the description.',
+                    '<strong>Block Destruction:</strong><br>The world is in Adventure mode. Blocks can only be broken inside the PvP arena. Please do not destroy things unnecessarily.'
+                ]
             }
+        };
+
+        // 言語を切り替える関数
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // ボタンの見た目切り替え
+            const btnJa = document.getElementById('btn-ja');
+            const btnEn = document.getElementById('btn-en');
+            if (btnJa) {
+                btnJa.style.background = lang === 'ja' ? '#3b82f6' : '#1e293b';
+                btnJa.style.color = lang === 'ja' ? 'white' : '#94a3b8';
+            }
+            if (btnEn) {
+                btnEn.style.background = lang === 'en' ? '#3b82f6' : '#1e293b';
+                btnEn.style.color = lang === 'en' ? 'white' : '#94a3b8';
+            }
+
+            // テキストの更新
+            const subtitleEl = document.getElementById('site-subtitle');
+            const ruleTitleEl = document.getElementById('rule-title');
+            if (subtitleEl) subtitleEl.innerHTML = translations[lang].subtitle;
+            if (ruleTitleEl) ruleTitleEl.innerHTML = translations[lang].rulesTitle;
+            
+            // ルール一覧の更新
+            const ruleListEl = document.getElementById('rule-list');
+            if (ruleListEl) {
+                ruleListEl.innerHTML = translations[lang].rules.map(rule => `<li style="margin-bottom: 10px;">${rule}</li>`).join('');
+            }
+
+            // サーバー状況表示の更新
+            updateServerDisplay();
         }
 
-        checkServer();
-    </script>
+        // サーバー画面の更新
+        function updateServerDisplay() {
+            const titleEl = document.getElementById('server-status-title');
+            const infoEl = document.getElementById('server-info');
+            if (!titleEl || !infoEl) return;
+            
+            const t = translations[currentLang];
 
-</body>
-</html>
+            if (!serverData) {
+                titleEl.innerHTML = t.checking;
+                infoEl.innerHTML = t.loading;
+                return;
+            }
+
+            if (serverData.online === true) {
+                titleEl.innerHTML = t.online;
+                titleEl.style.color = '#4ade80';
+                titleEl.style.textShadow = '0 0 10px rgba(74, 222, 128, 0.6)';
+                infoEl.innerHTML = `
+                    <div style="display: flex; justify-content: space-around; margin-bottom: 10px;">
+                        <div><strong style="color: #fff; font-size: 1.3rem;">${serverData.players.online}</strong><br><span style="font-size: 0.8rem;">${t.players}</span></div>
+                        <div><strong style="color: #fff; font-size: 1.3rem;">${serverData.players.max}</strong><br><span style="font-size: 0.8rem;">${t.maxPlayers}</span></div>
+                    </div>
+                    <p style="margin: 15px 0 0 0; color: #64748b; font-size: 0.85rem;">${t.version}: ${serverData.version}</p>
+                `;
+            } else if (serverData.online === false) {
+                titleEl.innerHTML = t.offline;
+                titleEl.style.color = '#f87171';
+                titleEl.style.textShadow = '0 0 10px rgba(248, 113, 113, 0.6)';
+                infoEl.innerHTML = t.closed;
+} else {titleEl.innerHTML = t.error;titleEl.style.color = '#fbbf24';titleEl.style.textShadow = '0 0 10px rgba(251, 191, 36, 0.6)';infoEl.innerHTML = t.fail;}}// サーバーデータの取得async function fetchServer() {try {const response = await fetch('mcsrvstat.us');serverData = await response.json();} catch (error) {serverData = { online: 'error' };}updateServerDisplay();}// 初期化処理document.addEventListener('DOMContentLoaded', () => {setLanguage('ja');fetchServer();});// 念のため即時実行（フォールバック）setTimeout(() => {if (!serverData) {setLanguage('ja');fetchServer();}}, 500);
