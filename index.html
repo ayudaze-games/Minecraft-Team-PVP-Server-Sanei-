@@ -16,14 +16,14 @@
     </p>
 
     <!-- ⚡ ステータスコンテナ（ネオンの枠線） -->
-    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #334155; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 30px; width: 100%; max-width: 420px; text-align: center; backdrop-filter: blur(10px);">
+    <div style="background: rgba(15, 23, 42, 0.8); border: 2px solid #334155; box-shadow: 0 0 25px rgba(59, 130, 246, 0.2); border-radius: 16px; padding: 30px; width: 100%; max-width: 420px; text-align: center; backdrop-filter: blur(10px); margin-bottom: 30px;">
         
-        <!-- 自動切り替えタイトル（初期状態はグレー） -->
+        <!-- 自動切り替えタイトル -->
         <h3 id="server-status-title" style="font-size: 1.4rem; margin-top: 0; margin-bottom: 20px; color: #64748b; letter-spacing: 1px; font-weight: 800;">
             🔍 サーバー状況確認中...
         </h3>
         
-        <!-- サーバーアイコン（少し浮かせるデザイン） -->
+        <!-- サーバーアイコン -->
         <div style="margin-bottom: 20px;">
             <img src="https://mcsrvstat.us" alt="サーバーアイコン" style="width: 80px; height: 80px; border-radius: 12px; border: 2px solid #475569; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
         </div>
@@ -42,6 +42,19 @@
         </div>
     </div>
 
+    <!-- 📜 サーバーのルールセクション -->
+    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid #1e293b; border-radius: 12px; padding: 25px; width: 100%; max-width: 420px; box-sizing: border-box;">
+        <h3 style="margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; color: #f59e0b; border-bottom: 2px solid #f59e0b; padding-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">
+            📜 SERVER RULES
+        </h3>
+        <ul style="margin: 0; padding-left: 20px; line-height: 1.6; color: #cbd5e1; font-size: 0.95rem;">
+            <li style="margin-bottom: 10px;"><strong style="color: #ef4444;">チート行為の禁止：</strong><br>このサーバーではすべての不正なチート・外部ツールの使用を禁止しています。</li>
+            <li style="margin-bottom: 10px;"><strong style="color: #ef4444;">ワールド複製の禁止：</strong><br>このサーバー（ワールドデータ）を無断で複製・配布することは禁止です。</li>
+            <li style="margin-bottom: 10px;"><strong style="color: #38bdf8;">動画配信・投稿時のお願い：</strong><br>動画や配信で使用する際は、概要欄などに <span style="background: #0f172a; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #f43f5e;">[Minecraft Server bySanei(Ayudaze)]</span> と入力していただけるとありがたいです！</li>
+            <li style="margin-bottom: 0;"><strong style="color: #38bdf8;">ブロック破壊について：</strong><br>基本はアドベンチャーモードのため壊したり設置はできません。PvP会場内のみ破壊可能になっていますが、できるだけ壊さないようにプレイしてください。</li>
+        </ul>
+    </div>
+
     <!-- フッター：飾り -->
     <p style="color: #475569; font-size: 0.8rem; margin-top: 40px; text-align: center;">
         &copy; 2026 SANEI TEAM PVP SERVER. All rights reserved.
@@ -58,7 +71,6 @@
                 const data = await response.json();
                 
                 if (data.online === true) {
-                    // オンラインのとき：緑のネオン
                     titleEl.innerHTML = '⚡ ONLINE';
                     titleEl.style.color = '#4ade80';
                     titleEl.style.textShadow = '0 0 10px rgba(74, 222, 128, 0.6)';
@@ -70,7 +82,6 @@
                         <p style="margin: 15px 0 0 0; color: #64748b; font-size: 0.85rem;">VERSION: ${data.version}</p>
                     `;
                 } else {
-                    // オフラインのとき：赤のネオン
                     titleEl.innerHTML = '🛑 OFFLINE';
                     titleEl.style.color = '#f87171';
                     titleEl.style.textShadow = '0 0 10px rgba(248, 113, 113, 0.6)';
