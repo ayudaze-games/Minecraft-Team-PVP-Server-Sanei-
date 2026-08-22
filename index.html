@@ -25,14 +25,14 @@
         </div>
     </div>
 
-    <!-- 🧠 裏でサーバーの状態をチェックするプログラム -->
+    <!-- 🧠 裏でサーバーの状態をチェックする最新プログラム -->
     <script>
         async function checkServer() {
             const titleEl = document.getElementById('server-status-title');
             const infoEl = document.getElementById('server-info');
             
             try {
-                // マイクラサーバーの状況をAPIで取得
+                // 最新のAPI（/3/）を使用してマイクラサーバーの状況を取得
                 const response = await fetch('https://mcsrvstat.us');
                 const data = await response.json();
                 
@@ -51,9 +51,9 @@
                     infoEl.innerHTML = '<p style="color: #ff5555; margin: 5px 0;">サーバーは現在停止しています。</p>';
                 }
             } catch (error) {
-                titleEl.innerHTML = '⚠️ 現在サーバーは停止しています';
+                titleEl.innerHTML = '⚠️ エラー';
                 titleEl.style.color = '#ffaa00';
-                infoEl.innerHTML = 'サーバーが停止しているためステータスの取得に失敗しました。';
+                infoEl.innerHTML = 'ステータスの取得に失敗しました。';
             }
         }
 
