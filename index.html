@@ -51,9 +51,9 @@
                     infoEl.innerHTML = '<p style="color: #ff5555; margin: 5px 0;">サーバーは現在停止しています。</p>';
                 }
             } catch (error) {
-                titleEl.innerHTML = '⚠️ エラー';
+                titleEl.innerHTML = '⚠️ 現在サーバーは停止しています';
                 titleEl.style.color = '#ffaa00';
-                infoEl.innerHTML = 'ステータスの取得に失敗しました。';
+                infoEl.innerHTML = 'サーバーが停止しているためステータスの取得に失敗しました。';
             }
         }
 
